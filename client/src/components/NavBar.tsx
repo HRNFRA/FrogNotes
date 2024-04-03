@@ -16,7 +16,8 @@ const NavBar = ({loggedInUser, onSignupClicked, onLoginClicked, onLogoutSuccessf
         <Navbar bg="primary" variant="dark" expand="sm" sticky="top">
             <Container>
                 <Navbar.Brand as={Link} to="/">
-                    Cool Notes App
+                    <img src="/pepenotes.png" alt="logo" width="30" height="30" className="d-inline-block align-top" />
+                    The Pepe Notes
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="main-navbar" />
                 <Navbar.Collapse id="main-navbar">
