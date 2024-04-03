@@ -4,7 +4,7 @@ import { Note } from "../models/note";
 const BASE_URL = "https://frognotes-api.onrender.com"
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
-    const response = await fetch(input, init);
+    const response = await fetch(`${BASE_URL}${input}`, init);
     if (response.ok) {
         return response
     } else {
@@ -21,7 +21,7 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 }
 
 export async function fetchNotes(): Promise<Note[]> {
-    const response = await fetchData(`${BASE_URL}/api/notes`, {method: 'GET', credentials: 'include'})
+    const response = await fetchData("/api/notes", {method: 'GET', credentials: 'include'})
     return response.json()
 }
 
@@ -31,7 +31,7 @@ export interface NoteInput {
 }
 
 export async function createNote(note: NoteInput):Promise<Note> {
-    const response = await fetchData(`${BASE_URL}/api/notes`,
+    const response = await fetchData("/api/notes",
     {
         method: 'POST',
         credentials: 'include',
@@ -42,7 +42,7 @@ export async function createNote(note: NoteInput):Promise<Note> {
 }
 
 export async function updateNote(noteId: string, note: NoteInput):Promise<Note> {
-    const response = await fetchData(`${BASE_URL}/api/notes/` + noteId,
+    const response = await fetchData("/api/notes/" + noteId,
     {
         method: 'PATCH',
         credentials: 'include',
@@ -53,5 +53,5 @@ export async function updateNote(noteId: string, note: NoteInput):Promise<Note> 
 }
 
 export async function deleteNote(noteId: string) {
-    await fetchData(`${BASE_URL}/api/notes/` + noteId, {method: 'DELETE', credentials: 'include'})
+    await fetchData("/api/notes/" + noteId, {method: 'DELETE', credentials: 'include'})
 }

@@ -4,7 +4,7 @@ import { User } from "../models/user";
 const BASE_URL = "https://frognotes-api.onrender.com"
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
-    const response = await fetch(input, init);
+    const response = await fetch(`${BASE_URL}${input}`, init);
     if (response.ok) {
         return response
     } else {
@@ -21,7 +21,7 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 }
 
 export async function getLoggedInUser(): Promise<User> {
-    const response = await fetchData(`${BASE_URL}/api/users`, {method: "GET", credentials: "include"})
+    const response = await fetchData("/api/users", {method: "GET", credentials: "include"})
     return response.json()
 }
 
@@ -32,7 +32,7 @@ export interface SignupCredentials {
 }
 
 export async function signUp(credentials: SignupCredentials): Promise<User> {
-    const response = await fetchData(`${BASE_URL}/api/users/signup`, {
+    const response = await fetchData("/api/users/signup", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -49,7 +49,7 @@ export interface LoginCredentials {
 }
 
 export async function login(credentials: LoginCredentials): Promise<User> {
-    const response = await fetchData(`${BASE_URL}/api/users/login`, {
+    const response = await fetchData("/api/users/login", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -61,5 +61,5 @@ export async function login(credentials: LoginCredentials): Promise<User> {
 }
 
 export async function logout() {
-    await fetchData(`${BASE_URL}/api/users/logout`, {method: "POST", credentials: "include"})
+    await fetchData("/api/users/logout", {method: "POST", credentials: "include"})
 }
