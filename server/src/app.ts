@@ -13,7 +13,7 @@ import cors from "cors";
 const app = express()
 
 app.use(cors({
-    origin: "https://frog-notes.vercel.app/",
+    origin: "https://frog-notes.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }))
