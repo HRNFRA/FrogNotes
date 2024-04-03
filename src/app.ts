@@ -8,9 +8,16 @@ import notesRoutes from "./routes/notes"
 import userRoutes from "./routes/users"
 import { requiresAuth } from "./middleware/auth"
 import createHttpError, { isHttpError } from "http-errors";
+import cors from "cors";
 
 
 const app = express()
+
+app.use(cors({
+    origin: "https://frog-notes.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}))
 
 app.use(morgan("dev"))
 
@@ -48,4 +55,4 @@ app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
         res.status(statusCode).json({error: errorMessage})
 })
 
-export default app;
+
