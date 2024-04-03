@@ -9,6 +9,7 @@ import userRoutes from "./routes/users"
 import { requiresAuth } from "./middleware/auth"
 import createHttpError, { isHttpError } from "http-errors";
 
+
 const app = express()
 
 app.use(morgan("dev"))
