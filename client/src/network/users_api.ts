@@ -19,7 +19,7 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
 }
 
 export async function getLoggedInUser(): Promise<User> {
-    const response = await fetchData("/api/users", {method: "GET"})
+    const response = await fetchData("/api/users", {method: "GET", credentials: "include"})
     return response.json()
 }
 
@@ -32,6 +32,7 @@ export interface SignupCredentials {
 export async function signUp(credentials: SignupCredentials): Promise<User> {
     const response = await fetchData("/api/users/signup", {
         method: "POST",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json",
         },
@@ -48,6 +49,7 @@ export interface LoginCredentials {
 export async function login(credentials: LoginCredentials): Promise<User> {
     const response = await fetchData("/api/users/login", {
         method: "POST",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json",
         },
