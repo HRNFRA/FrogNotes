@@ -13,7 +13,14 @@ import cors from "cors";
 const app = express()
 
 app.use(cors({
-    origin: "https://frog-notes.vercel.app",
+    origin: function(origin, callback) {
+        const allowedOrigins = ["https://frog-notes.vercel.app"]
+        if (!origin || allowedOrigins.includes(origin)) {
+            return callback(null, true)
+        } else {
+            return callback(new Error("Not allowed by CORS"))
+        }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }))
