@@ -1,3 +1,13 @@
 {
-    "buildCommand": "npm run build"
+    "builds": [
+        {
+            "src": "src/app.ts",
+            "use": "@vercel/node",
+            "config": { "zeroConfig": true }
+        }
+    ],
+    "routes": [
+        { "handle": "filesystem" },
+        { "src": "/.*", "dest": "src/app.ts" }
+    ]
 }
