@@ -44,7 +44,7 @@ export async function createNote(note: NoteInput):Promise<Note> {
 export async function updateNote(noteId: string, note: NoteInput):Promise<Note> {
     const response = await fetchData("/api/notes/" + noteId,
     {
-        method: 'PATCH',
+        method: 'PUT',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(note),
